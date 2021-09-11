@@ -1,0 +1,86 @@
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+  <span>Welcome</span>
+  <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+  <div class="card-container">
+    <button
+      type="button"
+      class="btn"
+      (click)="refreshExchangeList()"
+      *ngIf="!isLoading"
+    >
+      Refresh Exchange List
+    </button>
+    <i
+      *ngIf="isLoading"
+      class="fa fa-spinner"
+      style="font-size: 2rem"
+      aria-hidden="true"
+    ></i>
+  </div>
+
+  <div class="exchange-container exchange w-100">
+    <div class="exchange__header">
+      <h1>Top Crypto Exchanges</h1>
+      <p>Compare all top crypto exchanges.This list is ranked by volumes</p>
+    </div>
+    <div class="exchange__sub-header">
+      <span>Exchanges</span>
+    </div>
+    <div class="exchange__search">
+      <input
+        type="text"
+        placeholder="Find an exchange"
+        [(ngModel)]="search"
+        (keyup)="onSearch($event)"
+      />
+    </div>
+    <div class="exchange__body">
+      <div class="exchange__table table">
+        <div class="table__header">
+          <h4>Exchanges</h4>
+          <h4>Trade Volume</h4>
+        </div>
+
+        <div class="table__body">
+          <ul *ngIf="exchangeList.length > 0">
+            <li *ngFor="let exchange of exchangeList | paginate: config">
+              <div class="table-row">
+                <img
+                  *ngIf="exchange.url[0]"
+                  src="{{ exchange.url[0].url }}"
+                  alt=""
+                />
+                <img
+                  src="https://image.shutterstock.com/image-vector/bitcoin-abstract-golden-symbol-internet-600w-744604423.jpg"
+                  alt=""
+                  *ngIf="!exchange.url[0]"
+                />
+                <span>{{ exchange.name }}</span>
+              </div>
+              <span>$ {{ exchange.data_symbols_count }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="table__footer">
+          <i *ngIf="exchangeList.length == 0">No Data Found... </i>
+        </div>
+      </div>
+    </div>
+    <div class="pagination" *ngIf="exchangeList.length > 0">
+      <pagination-controls
+        (pageChange)="pageChange($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
