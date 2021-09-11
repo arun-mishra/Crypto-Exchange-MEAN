@@ -1,0 +1,6 @@
+{
+  "MONGOURI": "mongodb://localhost/crypto-assignment",
+  "EXCHANGE_API": "https://rest.coinapi.io/v1/exchanges?apikey=",
+  "EXCHANGEICONS_API": "https://rest.coinapi.io/v1/exchanges/icons/32?apikey=",
+  "API_KEY": "0EA4A398-16B7-4E5D-93AD-19A551FB1AB9"
+}

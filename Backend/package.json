@@ -1,0 +1,22 @@
+{
+  "name": "crypto-exchange-list-node-js",
+  "version": "1.0.0",
+  "description": "Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Arun Mishra",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^6.0.5",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}
